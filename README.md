@@ -7,17 +7,27 @@ after executing their commands.
 
 ## Installation
 
-1. Get the files 
-  - `git clone https://github.com/grenle/MowBot.git`
-2. Install the necessary libs
-  - `npm i`
+```
+# Get the files 
+git clone https://github.com/grenle/MowBot.git
+# Go to correct dir
+cd MowBot
+# Install the necessary libs
+npm i
+```
 
 ## Usage
 
-- `node index -f ./path/to/your/bot/file` simulate the bots
-  in `file`. See below for the file format.
-- `npm start` simulates the bots in the bundled test file,
-  for demonstration.
+```
+# Simulate the bots in `file`. See below for the file
+# format
+node index -f ./path/to/your/bot/file
+
+# simulates the bots in the bundled test file, for
+# demonstration
+npm start
+
+```
 
 ### Bot file format
 
