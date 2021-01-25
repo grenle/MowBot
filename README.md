@@ -16,7 +16,7 @@ cd MowBot
 npm i
 ```
 
-## Synopsis
+## Usage
 
 Provided by the Yargs package.
 
@@ -31,19 +31,6 @@ Options:
 
 Examples:
   index.js -f foo.txt  simulates MowBots described in foo.txt
-```
-
-## Usage
-
-```
-# Simulate the bots in `file`. See below for the file
-# format
-node index -f ./path/to/your/bot/file
-
-# simulates the bots in the bundled test file, for
-# demonstration
-npm start
-
 ```
 
 ### Bot file format
