@@ -21,6 +21,7 @@ npm i
 Provided by the Yargs package (with light editing).
 
 ```
+Demo: npm start
 Usage: node index.js [options]
 
 Options:
@@ -30,10 +31,12 @@ Options:
   -v, --version  Show version number                            [boolean]
 
 Examples:
-  index.js -f foo.txt     simulates MowBots described in foo.txt
-  index.js -s -f foo.txt  same as above but with a semi-graphical
-                          representation of the grid before and after
-                          simulation
+  npm start                    runs simulation on bundled text file from
+                               problem description
+  node index.js -f foo.txt     simulates MowBots described in foo.txt
+  node index.js -s -f foo.txt  same as above but with a semi-graphical
+                               representation of the grid before and after
+                               simulation
 ```
 
 ### Bot file format
