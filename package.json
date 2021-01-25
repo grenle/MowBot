@@ -1,0 +1,26 @@
+{
+  "name": "mowbot",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js -f ./test-vectors/givenFile.txt",
+    "test": "mocha"
+  },
+  "mocha": {
+    "extension": ["js"],
+    "package": "./package.json",
+    "spec": "./**/*.test.js",
+    "watch-files": "./**/*.test.js",
+    "watch-ignore": ["node_modules/"]
+  },
+  "keywords": [],
+  "author": "Gregory Houldsworth",
+  "license": "ISC",
+  "dependencies": {
+    "yargs": "^16.2.0"
+  },
+  "devDependencies": {
+    "mocha": "^8.2.1"
+  }
+}
