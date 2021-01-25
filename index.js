@@ -48,8 +48,7 @@ async function main(){
     })
     boards.pre = new Board(bots)
     bots.forEach(bot => {
-      bot.execute()
-      console.log(bot.report())
+      console.log(bot.execute())
     })
     boards.post = new Board(bots)
     if(show){

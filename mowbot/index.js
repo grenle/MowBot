@@ -39,6 +39,7 @@ class MowBot{
    */
   execute(){
     this.commands.forEach(c => this.dispatchCommand(c))
+    return this.report()
   }
   /**
    * Interpret a command encoded as a letter into a method
