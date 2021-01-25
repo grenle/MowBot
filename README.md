@@ -37,6 +37,8 @@ Examples:
   node index.js -s -f foo.txt  same as above but with a semi-graphical
                                representation of the grid before and after
                                simulation
+
+You have a few demo files in the ./test-vectors directory
 ```
 
 ### Bot file format
