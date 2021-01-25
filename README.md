@@ -16,6 +16,23 @@ cd MowBot
 npm i
 ```
 
+## Synopsis
+
+Provided by the Yargs package.
+
+```
+Usage: index.js [options]
+
+Options:
+  -s, --show     Shows a graphical representation of grid              [boolean]
+  -f, --file     File containing simulation information               [required]
+  -h, --help     Show help                                             [boolean]
+  -v, --version  Show version number                                   [boolean]
+
+Examples:
+  index.js -f foo.txt  simulates MowBots described in foo.txt
+```
+
 ## Usage
 
 ```

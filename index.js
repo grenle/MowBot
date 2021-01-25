@@ -5,11 +5,13 @@ const utils = require('./utils')
 const argv = require('yargs/yargs')(process.argv.slice(2))
     .usage('Usage: $0 [options]')
     .example('$0 -f foo.txt', 'simulates MowBots described in foo.txt')
+    .alias('s', 'show')
+    .boolean('s')
+    .describe('s', 'Shows a graphical representation of grid')
     .alias('f', 'file')
     .nargs('f', 1)
     .describe('f', 'File containing simulation information')
     .demandOption(['f'])
-    .conflicts('s', 'f')
     .help('h')
     .alias('h', 'help')
     .alias('v', 'version')
@@ -20,8 +22,10 @@ const fs = require('fs').promises
 const parse = require('./botfile-parser')
 const MowBot = require('./mowbot')
 
+const Board = require('./board')
+
 async function main(){
-  const {file} = argv  
+  const {file, show} = argv  
   const filepath = String(file)
   let rawInitValues = ''
   try{
@@ -36,13 +40,22 @@ async function main(){
   try{
     const extractedData = parse(rawInitValues)
     const {limits, botsInit} = extractedData
-      const bots = botsInit.map(botInit => {
-      return new MowBot(limits, botInit, utils.CircularArray)
+    const boards = {}
+    const bots = botsInit.map(botInit => {
+      const bot = new MowBot(limits, botInit, utils.CircularArray)
+      return bot
     })
-    bots.forEach(b => {
-      b.execute()
-      console.log(b.report())
+    boards.pre = new Board(bots)
+    bots.forEach(bot => {
+      bot.execute()
+      console.log(bot.report())
     })
+    boards.post = new Board(bots)
+    if(show){
+      console.log()
+      console.log(Board.sideBySide(boards.pre, boards.post))
+      console.log()
+    }
   }catch(e){
     // not much we can do, at least tell the user why we
     // failed to simulate his Automated Mowing Army.

@@ -25,6 +25,7 @@ class MowBot{
    * In typescript we would use an interface.
    */
   constructor(limit, init, CircularArray){
+    this.visited = []
     this.coordinates = init.coordinates
     this.limit = limit
     const bearingSymbols = 'NESW'.split('')
@@ -82,6 +83,7 @@ class MowBot{
     }
     if(this.isPositionInGrid(newPosition)){
       this.coordinates = newPosition
+      this.visited.push(newPosition)
     }
   }
   /**
