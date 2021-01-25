@@ -25,7 +25,7 @@ class MowBot{
    * In typescript we would use an interface.
    */
   constructor(limit, init, CircularArray){
-    this.visited = []
+    this.visited = [init.coordinates]
     this.coordinates = init.coordinates
     this.limit = limit
     const bearingSymbols = 'NESW'.split('')
