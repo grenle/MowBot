@@ -12,6 +12,8 @@ function parseLimits(contents){
     x: Number.parseInt(rawLimits[0]),
     y: Number.parseInt(rawLimits[1])
   }
+  // Truthy rather than isNaN, to catch zero lengths
+  // Separate for finer error reporting
   if(!limits.x){
     throw new Error(badXLimit(rawLimits[0]))
   }

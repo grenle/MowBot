@@ -98,7 +98,8 @@ botline     = botinit CRLF botcommands
 
 ## TODO
 
-test isAssociativeArray
+- consider other MowBots when validating 'A' command
+- test isAssociativeArray
 
 ## Log & ideas
 
