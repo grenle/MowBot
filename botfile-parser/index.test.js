@@ -5,6 +5,8 @@ const assert = require('assert')
 const parse = require('./index')
 const msgs = require('../msgs')
 
+const MowBotParseError = require('./mowbot-parse-error')
+
 describe('parser', function(){
   const messages = msgs.botfileparser.parse
   it('throws on empty input', function(){

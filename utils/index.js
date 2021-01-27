@@ -7,6 +7,17 @@ function len(o){ return o.length }
 // trivial function version of add
 function ADD(x, y){ return x + y }
 
+// trivial noop, identity and constant functions
+function noop(){}
+
+function I(o){ return o }
+
+function K(o){
+  return function(){
+    return o
+  }
+}
+
 /**
  * Tests if `o` is what some languages would call an
  * associative array.

@@ -12,7 +12,6 @@ const argv = require('yargs/yargs')(process.argv.slice(2))
     .alias('f', 'file')
     .nargs('f', 1)
     .describe('f', 'File containing simulation information')
-    .demandOption(['f'])
     .help('h')
     .alias('h', 'help')
     .alias('v', 'version')
@@ -25,21 +24,9 @@ const MowBot = require('./mowbot')
 
 const Board = require('./board')
 
-async function main(){
-  const {file, show} = argv  
-  const filepath = String(file)
-  let rawInitValues = ''
+function parseAndExecute(contents, show){
   try{
-    rawInitValues = await fs.readFile(filepath, {
-      encoding: 'utf8'
-    })
-  }catch(e){
-    console.error(`Could not open file ${filepath}`)
-    process.exitCode = 1
-    return
-  }
-  try{
-    const extractedData = parse(rawInitValues)
+    const extractedData = parse(contents)
     const {limits, botsInit} = extractedData
     const boards = {}
     const bots = botsInit.map(botInit => {
@@ -63,6 +50,38 @@ async function main(){
     process.exitCode = 1
     return
   }
+}
+
+async function main(){
+  const {file, show} = argv
+  const filepath = String(file)
+  let rawInitValues = ''
+  if(Boolean(process.stdin.isTTY)){
+    if(!file){
+      console.error('MowBot requires either -f <filepath> of piped content, neither given')
+      process.exitCode = 1
+      return
+    }
+    try{
+      rawInitValues = await fs.readFile(filepath, {
+        encoding: 'utf8'
+      })
+      parseAndExecute(rawInitValues, show)
+    }catch(e){
+      console.error(`Could not open file ${filepath}`)
+      process.exitCode = 1
+      return
+    }
+  }else{
+    const {stdin} = process
+    stdin.on('data', function(chunk){
+      rawInitValues += chunk
+    })
+    stdin.on('end', function(){
+      parseAndExecute(rawInitValues, show)
+    })
+  }
+
   
 }
 

@@ -26,17 +26,18 @@ Usage: node index.js [options]
 
 Options:
   -s, --show     Shows a graphical representation of grid       [boolean]
-  -f, --file     File containing simulation information        [required]
+  -f, --file     File containing simulation information          [string]
   -h, --help     Show help                                      [boolean]
   -v, --version  Show version number                            [boolean]
 
 Examples:
-  npm start                    runs simulation on bundled text file from
-                               problem description
-  node index.js -f foo.txt     simulates MowBots described in foo.txt
-  node index.js -s -f foo.txt  same as above but with a semi-graphical
-                               representation of the grid before and after
-                               simulation
+  npm start                      runs simulation on bundled text file from
+                                 problem description
+  node index.js -f foo.txt       simulates MowBots described in foo.txt
+  node index.js -s -f foo.txt    same as above but with a semi-graphical
+                                 representation of the grid before and after
+                                 simulation
+  cat /some/file | node index.js same as node index.js -f /some/file
 
 You have a few demo files in the ./test-vectors directory
 ```
@@ -103,6 +104,10 @@ botline     = botinit CRLF botcommands
 
 ## Log & ideas
 
+- Bots consume and an item in the parser's output. Could we
+  use JSDoc's @interface for type checking like TypeScript would?
+  - parse: startCoordinates x botDescription[]
+  - bot:   botDescription
 - BotFiles are assumed small, with larger user input we
   should give errors with line number to be really helpful,
   which would be sufficiently complex to justify an extra
